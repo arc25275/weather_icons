@@ -20,8 +20,9 @@ def main():
             continue
         weather = combine_weather(message)
         print(f"Combined Weather: {weather}")
-        socket.send_string(json.dumps(weather))
-        generate_icons(weather)
+        icon_svg = generate_icons(weather)
+        print(f"Sending Icon: {icon_svg}")
+        socket.send(icon_svg)
 
 
 def validate_weather(weather):
@@ -87,16 +88,18 @@ def generate_icons(new_weather):
         "secondary_weather"]
     fig = sg.SVGFigure("5in", "5in")
     time_fig = sg.fromfile(f"./icons/{time}.svg").getroot()
-    time_fig.moveto(120, -50)
+    time_fig.moveto(120, -50)  # Move over to the top right, so it can peek out from behind main
     fig.append([time_fig])
+    # May sometimes be None
     if secondary_weather:
         secondary_fig = sg.fromfile(f"./icons/{secondary_weather}.svg").getroot()
-        secondary_fig.moveto(0, 200)
+        secondary_fig.moveto(0, 200)  # Needs to be overlapping slightly with main
         fig.append([secondary_fig])
+    # Clear doesn't need an icon
     if main_weather != "clear":
         main_fig = sg.fromfile(f"./icons/{main_weather}.svg").getroot()
         fig.append([main_fig])
-    fig.save(f"./weather_{main_weather}_{secondary_weather}_{time}.svg")
+    return fig.to_str()
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
-import zmq
 import json
 import time
+
+import zmq
 
 context = zmq.Context()
 socket = context.socket(zmq.REQ)
@@ -13,48 +14,42 @@ weather_list = [
         "rain": 0,
         "snow": 0,
         "clouds": 0,
-        "wind": 0,
-        "temp": 75
+        "wind": 0
     },
     {
         "sun": False,
         "rain": 2,
         "snow": 0,
         "clouds": 3,
-        "wind": 1,
-        "temp": 55
+        "wind": 1
     },
     {
         "sun": True,
         "rain": 0,
         "snow": 0,
         "clouds": 0,
-        "wind": 0,
-        "temp": 75
+        "wind": 0
     },
     {
         "sun": False,
         "rain": 2,
         "snow": 0,
         "clouds": 3,
-        "wind": 1,
-        "temp": 55
+        "wind": 1
     },
     {
         "sun": True,
-        "rain": 4,
-        "snow": 0,
+        "rain": 0,
+        "snow": 3,
         "clouds": 3,
-        "wind": 0,
-        "temp": 75
+        "wind": 0
     },
     {
         "sun": False,
         "rain": 2,
         "snow": 0,
         "clouds": 3,
-        "wind": 1,
-        "temp": 55
+        "wind": 1
     }
 ]
 
@@ -62,5 +57,4 @@ for i in weather_list:
     print(i)
     socket.send_string(json.dumps(i))
     time.sleep(1)
-    print(socket.recv_string())
-
+    print(socket.recv())
