@@ -100,6 +100,6 @@ For the example data above, the output svg will be
 
 And when rendered, it will look like this:
 
-![Example Weather](./example_weather.svg?raw=true)
+![example_weather](https://github.com/arc25275/weather_icons/assets/55003876/05287047-6407-4cd8-9ed9-a5a72d0a8db3)
 
 ## UML
