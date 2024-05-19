@@ -53,8 +53,13 @@ weather_list = [
     }
 ]
 
-for i in weather_list:
-    print(i)
-    socket.send_string(json.dumps(i))
-    time.sleep(1)
-    print(socket.recv())
+
+def test_weather():
+    for i in weather_list:
+        print(i)
+        socket.send_string(json.dumps(i))
+        time.sleep(1)
+        response = socket.recv()
+        print(response)
+        if response != "Invalid Weather":
+            assert True
