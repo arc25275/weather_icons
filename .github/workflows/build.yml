@@ -21,12 +21,11 @@ jobs:
       - name: Install requirements
         run: |
           pip install -r requirements.txt
-      - name: Test with pytest
-        run: |
+      - run: |
+          pip install pytest pytest-cov
           python weather_icons.py
-          & pip install pytest pytest-cov
-          & sleep 5
-          & pytest test_requesting.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+      - run:
+          pytest test_requesting.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
       - name: Run PyInstaller
         run: |
           python -m PyInstaller weather_icons.spec
