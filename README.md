@@ -100,6 +100,6 @@ For the example data above, the output svg will be
 
 And when rendered, it will look like this:
 
-![Example Weather](./example_weather.png)
+<img src="example_weather.png" width=300/>
 
 ## UML
