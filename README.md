@@ -125,3 +125,7 @@ And when rendered, it will look like this:
 
 ## UML
 
+The UML Describes the general workflow of the program, and how it works. 
+
+![WeatherUML](https://github.com/arc25275/weather_icons/assets/55003876/8d26c601-73bc-4c27-b8b4-2e5cb04fdbf0)
+
