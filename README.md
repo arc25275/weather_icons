@@ -1,7 +1,7 @@
 # Weather Icons
 
 This is a small app made to create weather icons in the form of svg files based on input
-through [ZeroMQ](https://zeromq.org/).
+through [ZeroMQ](https://zeromq.org/), which is a cross-language data request and reply system using sockets.
 
 ## Requesting Data
 
@@ -10,7 +10,7 @@ want to request data.)
 
 To request data, setup a [ZeroMQ Request-Reply Pattern](https://zeromq.org/socket-api/#request-reply-pattern), with the
 port being 5555.
-Specific examples for most programming languages can be found [here.](https://zeromq.org/get-started/).
+Specific examples on how to do this for most programming languages can be found [here](https://zeromq.org/get-started/). Follow the installation guide provided, and adapt the sample code to mimic the python below.
 
 Data needs to be requested with a **_stringified_** json object in the following format:
 
