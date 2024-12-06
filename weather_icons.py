@@ -42,6 +42,26 @@ def validate_weather(weather):
         return False
     return True
 
+def combine_secondary_weather(weather, new_weather):
+        # Secondary Weather
+    if weather["rain"] == 4:
+        # Lightning
+        new_weather["secondary_weather"] = "lightning"
+    elif weather["rain"] > 0 and weather["snow"] > 0:
+        # If it is raining and snowing, show sleet
+        new_weather["secondary_weather"] = "sleet"
+    elif weather["rain"] > 0 and weather["wind"] > 0:
+        # If it is raining and windy, show windy rain / Storm
+        new_weather["secondary_weather"] = f"windy_rain{weather['rain']}"
+    elif weather["rain"] > 0:
+        # Rain
+        new_weather["secondary_weather"] = f"rain{weather['rain']}"
+    elif weather["snow"] > 0:
+        # Snow
+        new_weather["secondary_weather"] = f"snow{weather['snow']}"
+        # Wind
+    elif weather["wind"] > 0:
+        new_weather["secondary_weather"] = f"wind{weather['wind']}"
 
 def combine_weather(weather):
     new_weather = {
@@ -61,25 +81,8 @@ def combine_weather(weather):
         # Clear weather
         new_weather["main_weather"] = "clear"
 
-    # Secondary Weather
-    if weather["rain"] == 4:
-        # Lightning
-        new_weather["secondary_weather"] = "lightning"
-    elif weather["rain"] > 0 and weather["snow"] > 0:
-        # If it is raining and snowing, show sleet
-        new_weather["secondary_weather"] = "sleet"
-    elif weather["rain"] > 0 and weather["wind"] > 0:
-        # If it is raining and windy, show windy rain / Storm
-        new_weather["secondary_weather"] = f"windy_rain{weather['rain']}"
-    elif weather["rain"] > 0:
-        # Rain
-        new_weather["secondary_weather"] = f"rain{weather['rain']}"
-    elif weather["snow"] > 0:
-        # Snow
-        new_weather["secondary_weather"] = f"snow{weather['snow']}"
-        # Wind
-    elif weather["wind"] > 0:
-        new_weather["secondary_weather"] = f"wind{weather['wind']}"
+    combine_secondary_weather(weather, new_weather)
+
     return new_weather
 
 
